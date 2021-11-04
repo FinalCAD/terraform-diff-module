@@ -10,7 +10,8 @@ data "external" "diff_secret" {
   program = ["sh", "${path.module}/scripts/diff.sh",
     local.diff_version,
     data.aws_secretsmanager_secret_version.secret_manager_current_version.secret_string,
-  jsonencode(var.secret_manager_new_version)]
+    jsonencode(var.secret_manager_new_version)
+  ]
 }
 
 resource "null_resource" "deploy_info" {
