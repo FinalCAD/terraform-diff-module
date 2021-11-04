@@ -5,9 +5,14 @@ import (
     "encoding/json"
     "github.com/FinalCAD/terraform-diff-module/diff/internal/types"
     "strconv"
+    "strings"
 )
 
 type Secrets interface{}
+
+func ProtectString(data string) (res string) {
+    return strings.Replace(data, "\"", "\\\"", -1)
+}
 
 func TransToString(data interface{}) (res string) {
     switch v := data.(type) {
@@ -56,11 +61,11 @@ func Compare(jsonOldData Secrets, jsonNewData Secrets) types.Results {
         strValue2 := TransToString(value2)
 
         if (!ok) {
-            results[key].UpdateResult(types.ChangeStatus.ADD, strValue2)
+            results[key].UpdateResult(types.ChangeStatus.ADD, ProtectString(strValue2))
         } else if (!ok2) {
-            results[key].UpdateResult(types.ChangeStatus.REMOVE, strValue)
+            results[key].UpdateResult(types.ChangeStatus.REMOVE, ProtectString(strValue))
         } else if (strValue != strValue2) {
-            results[key].UpdateResult(types.ChangeStatus.CHANGE, strValue + " -> " + strValue2)
+            results[key].UpdateResult(types.ChangeStatus.CHANGE, ProtectString(strValue) + " -> " + ProtectString(strValue2))
         }
     }
 
