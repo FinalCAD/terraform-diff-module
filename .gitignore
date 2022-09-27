@@ -1,3 +1,4 @@
 .terraform
 diff/diff
 *.log
+terraform.tfstate

@@ -1,4 +1,4 @@
-package diff
+package change
 
 import (
     "fmt"
@@ -14,7 +14,7 @@ func ProtectString(data string) (res string) {
     return strings.Replace(data, "\"", "\\\"", -1)
 }
 
-func TransToString(data interface{}) (res string) {
+func TransformToString(data interface{}) (res string) {
     switch v := data.(type) {
     case float64:
         res = strconv.FormatFloat(data.(float64), 'g', 6, 64)
@@ -54,25 +54,25 @@ func Compare(jsonOldData Secrets, jsonNewData Secrets) types.Results {
     }
 
     for key, _ := range results {
-        value, ok := jsonOldData.(map[string]interface{})[key]
-        value2, ok2 := jsonNewData.(map[string]interface{})[key]
+        oldvalue, old := jsonOldData.(map[string]interface{})[key]
+        newvalue, new := jsonNewData.(map[string]interface{})[key]
 
-        strValue := TransToString(value)
-        strValue2 := TransToString(value2)
+        strValue := TransformToString(oldvalue)
+        strValue2 := TransformToString(newvalue)
 
-        if (!ok) {
-            results[key].UpdateResult(types.ChangeStatus.ADD, ProtectString(strValue2))
-        } else if (!ok2) {
-            results[key].UpdateResult(types.ChangeStatus.REMOVE, ProtectString(strValue))
+        if (!old) {
+            results[key].UpdateResult(types.ChangeStatus.ADD, ProtectString(strValue2), "")
+        } else if (!new) {
+            results[key].UpdateResult(types.ChangeStatus.REMOVE, ProtectString(strValue), "")
         } else if (strValue != strValue2) {
-            results[key].UpdateResult(types.ChangeStatus.CHANGE, ProtectString(strValue) + " -> " + ProtectString(strValue2))
+            results[key].UpdateResult(types.ChangeStatus.CHANGE, ProtectString(strValue), ProtectString(strValue2))
         }
     }
 
     return results
 }
 
-func Unmarshal(data string) Secrets{
+func UnMarshal(data string) Secrets{
 	var jsonData interface{}
     err := json.Unmarshal([]byte(data), &jsonData)
     if err != nil {
@@ -81,6 +81,6 @@ func Unmarshal(data string) Secrets{
     return jsonData
 }
 
-func Diff(original string, updated string) types.Results {
-    return Compare(Unmarshal(original), Unmarshal(updated))
+func Change(original string, updated string) types.Results {
+    return Compare(UnMarshal(original), UnMarshal(updated))
 }
