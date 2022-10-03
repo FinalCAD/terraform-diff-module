@@ -28,11 +28,11 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.14.7'
+          go-version: '>=1.17.0'
       - name: Install dependencies
         run: |
           go version
-          go get -u golang.org/x/lint/golint
+          go install golang.org/x/lint/golint@latest
       - name: Run build
         run: go build .
         working-directory: diff

@@ -13,9 +13,3 @@ data "external" "diff_secret" {
     jsonencode(var.secret_manager_new_version)
   ]
 }
-
-resource "null_resource" "deploy_info" {
-  triggers = {
-    env_change = join("\n", [for key, value in data.external.diff_secret.result : "${key} -> ${value}"])
-  }
-}

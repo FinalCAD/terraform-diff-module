@@ -2,7 +2,7 @@ package cmd
 
 import (
     "flag"
-    "github.com/FinalCAD/terraform-diff-module/diff/internal/diff"
+    "github.com/FinalCAD/terraform-diff-module/diff/internal/change"
 )
 
 func Execute() {
@@ -13,6 +13,6 @@ func Execute() {
     flag.StringVar(&updated, "u", "{}", "Specify updated json")
     printJson := flag.Bool("json", false, "Output to json format")
     flag.Parse()
-    var r = diff.Diff(initial, updated)
-    r.Print(*printJson)
+    var change = change.Change(initial, updated)
+    change.Print(*printJson)
 }

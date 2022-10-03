@@ -47,3 +47,7 @@ module "diff_secret" {
   aws_assume_role            = local.aws_assume_role
   aws_allowed_account_ids    = local.aws_allowed_account_ids
 }
+
+output "env_vars_change" {
+  value = values(module.diff_secret.env_vars_change)
+}
