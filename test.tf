@@ -34,11 +34,3 @@ module "diff_secret" {
 output "env_vars_change" {
   value = values(module.diff_secret.env_vars_change)
 }
-
-output "test1" {
-  value = module.diff_secret.test1
-}
-
-output "test2" {
-  value = module.diff_secret.test2
-}
