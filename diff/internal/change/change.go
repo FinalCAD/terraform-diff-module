@@ -34,6 +34,8 @@ func TransformToString(data interface{}) (res string) {
         res = data.(json.Number).String()
     case string:
         res = data.(string)
+    case bool:
+        res = strconv.FormatBool(data.(bool))
     case []byte:
         res = string(v)
     default:
