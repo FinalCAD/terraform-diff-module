@@ -37,5 +37,5 @@ jobs:
         run: go build .
         working-directory: diff
       - name: Run test
-        run: go test -v
+        run: go test -v ./...
         working-directory: diff
