@@ -8,30 +8,13 @@ provider "aws" {
 }
 
 locals {
-  secret_name             = "terraform/production/ap/documents-studio-fetch"
-  aws_region              = "ap-northeast-1"
+  secret_name             = "terraform/production/eu/authorization-service-api"
+  aws_region              = "eu-central-1"
   aws_assume_role         = "arn:aws:iam::862962005596:role/tf-terraform-developer"
   aws_allowed_account_ids = ["862962005596"]
 
   application_environment = {
-    "COMMON_CIDR"                                                           = "10.0.0.0/8"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__AmazonProfileName"         = "noProfile"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__Bucket"                    = "finalcloud-production-ap"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__CleanUPInterval"           = "3600000"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__ConcurrentServiceRequests" = "100"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__DocGenJobTimeOut"          = "1800000"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__DownloadTimeout"           = "180000"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__EnableProfileConfig"       = "false"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__FetchJobTimeOut"           = "1800000"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__LocalPath"                 = "c:\\\\Projects\\\\GeneratedFiles\\\\"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__PreAuthenticated"          = "false"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__Region"                    = "us-east-1"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__RetryUploadDownload"       = "3"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__Storage"                   = "0"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__ThreadCount"               = 4
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__UploadTimeout"             = "600000"
-    "COMMON_DEFAULT_ProfileConfig__AmazonConfig__VerifyFile"                = "true"
-    "FETCH_Jwt__Issuer"                                                     = "DocumentsStudioScheduler"
+    "MassTransit__Enable" = true
   }
 }
 
