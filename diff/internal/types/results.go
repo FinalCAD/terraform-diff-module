@@ -13,6 +13,7 @@ var ProtectedKeys = []string{
     "projectkey",
     "database",
     "_key",
+    "_secret",
     "password",
     "apikey",
     "clientid",
