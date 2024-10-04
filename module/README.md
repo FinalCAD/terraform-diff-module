@@ -1,8 +1,9 @@
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_external"></a> [external](#requirement\_external) | >= 2.1 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.1 |
 
@@ -12,10 +13,6 @@
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
 | <a name="provider_external"></a> [external](#provider\_external) | >= 2.1 |
-
-## Modules
-
-No modules.
 
 ## Resources
 
@@ -39,3 +36,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_env_vars_change"></a> [env\_vars\_change](#output\_env\_vars\_change) | n/a |
+<!-- END_TF_DOCS -->

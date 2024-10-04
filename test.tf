@@ -26,9 +26,6 @@ module "diff_secret" {
   source                     = "./module"
   aws_secret_id_current      = data.aws_secretsmanager_secret.secret.id
   secret_manager_new_version = local.application_environment
-  aws_region                 = local.aws_region
-  aws_assume_role            = local.aws_assume_role
-  aws_allowed_account_ids    = local.aws_allowed_account_ids
 }
 
 output "env_vars_change" {
