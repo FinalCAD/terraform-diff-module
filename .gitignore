@@ -1,4 +1,5 @@
-.terraform
-diff/diff
-*.log
-terraform.tfstate
+/.terraform
+/diff/diff
+/*.log
+/terraform.tfstate
+/.terraform.lock.hcl
